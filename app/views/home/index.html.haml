@@ -1,1 +1,16 @@
-%h3 Home
+%main#snapgame
+- if @photos
+  -@photos.each do |photo_url|
+    - i = 1
+    .flipper
+      .window
+        - if current_user
+          %img{class: "image#{@photos.index(photo_url)}", src: "#{photo_url}"}
+        - else
+          =image_tag photo_url, class: "image#{@photos.index(photo_url)}"
+      .front
+        - if current_user
+          %img.front_image{src: "#{current_user.image_url}"}
+        - else
+          = image_tag "facebook.png", class: "front_image"
+
