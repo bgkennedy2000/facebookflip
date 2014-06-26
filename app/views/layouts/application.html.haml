@@ -12,10 +12,13 @@
     #container.container
       %header
         - if current_user
-          = link_to "Log out", destroy_user_session_path, method: :delete 
+          = link_to "Log out", destroy_user_session_path, method: :delete
+        - else
+          = link_to "Create a game with your facebook images", user_omniauth_authorize_path(:facebook), id: "login_link"
         = render 'layouts/messages'
       #main{:role => "main"}
         - unless current_user
           = render 'layouts/login'
         = yield
       %footer
+        = link_to "privacy policy", privacy_policy_path

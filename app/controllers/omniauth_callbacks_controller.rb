@@ -11,7 +11,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     else
       session["devise.facebook_data"] = request.env["omniauth.auth"]
       flash.notice = "Problem creating account"
-      redirect_to new_user_registration_url
+      redirect_to root_path
     end
   end
 

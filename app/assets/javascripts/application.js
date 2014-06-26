@@ -14,5 +14,3 @@
 //= require jquery_ujs
 //= require foundation
 //= require underscore
-//= require snapgame
-//= require_tree .

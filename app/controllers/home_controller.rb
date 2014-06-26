@@ -6,4 +6,8 @@ class HomeController < ApplicationController
       @photos = User.default_photos
     end
   end
+
+  def privacy_policy
+
+  end
 end
