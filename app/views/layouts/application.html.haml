@@ -12,7 +12,9 @@
     #container.container
       %header
         - if current_user
-          = link_to "Log out", destroy_user_session_path, method: :delete 
+          = link_to "Log out", destroy_user_session_path, method: :delete
+        - else
+          = link_to "Play with my facebook photos", "", id: "open-modal" 
         = render 'layouts/messages'
       #main{:role => "main"}
         - unless current_user
