@@ -4,6 +4,12 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def facebook
     @user = User.from_omniauth(request.env["omniauth.auth"])
+    puts @user
+    puts @user.provider 
+    puts @user.uid 
+    puts @user.email 
+    puts @user.token 
+    puts @user.image_url 
 
     if @user.persisted?
       flash.notice = "Signed in Through Facebook!"
