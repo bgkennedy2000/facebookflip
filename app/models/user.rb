@@ -13,18 +13,19 @@ class User < ActiveRecord::Base
     if user = User.find_by_email(auth.info.email)
       user.provider = auth.provider
       user.uid = auth.uid
+      user.email = auth.info.email
       user.token = auth.credentials.token
       user.image_url = auth.info.image
       user
     else
       where(auth.slice(:provider, :uid)).first_or_create do |user|
-        puts auth
         user.provider = auth.provider
         user.uid = auth.uid
         user.email = auth.info.email
         user.password = Devise.friendly_token[0,20]
         user.token = auth.credentials.token
         user.image_url = auth.info.image
+        user
       end
     end   
   end
