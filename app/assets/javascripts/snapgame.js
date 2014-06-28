@@ -125,9 +125,12 @@ SnapGame.adjustPhoto = function(height, width) {
 
 SnapGame.loginModal = function() {
   el = document.getElementById("login-modal");
-  el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
-  $('#login_link').toggle();
+  if (el != null) {
+    el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
+    $('#login_link').toggle();
+  }
 }
+
 SnapGame.clickModalClickHandler = function() {
   $('#modal-open').on('click', function(ev) {
     ev.preventDefault();
