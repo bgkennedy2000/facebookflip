@@ -153,5 +153,6 @@ SnapGame.setup = function () {
 }
 
 
-
-$(SnapGame.setup);
+$( window ).load(function() {
+  SnapGame.setup();
+});
