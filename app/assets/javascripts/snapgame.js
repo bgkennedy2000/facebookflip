@@ -49,15 +49,21 @@ SnapGame.buildBoard = function() {
 
 SnapGame.flipper = function() {
   $('.flipper').on( 'click', function(ev) {
-    if (SnapGame.allowTurn === true) {
+    if (SnapGame.allowTurn == true) {
       SnapGame.allowTurn = false;
       SnapGame.turnNumber = SnapGame.turnNumber + 1;
-      var flipper = $(ev.target).parent();
+      var flipper = $(ev.target).parents('.flipper');
       flipper.children('div').slideToggle();
+      console.log(flipper);
+      console.log(flipper.children('div'));
       SnapGame.evaluateTurn(flipper.children('.window'));
       SnapGame.turnCheck();
-      setTimeout(function() { SnapGame.turnComplete(flipper.children('.window')); }, 3250);
+      if (SnapGame.turnNumber % 2 == 0) {
+        setTimeout(function() { SnapGame.turnComplete(flipper.children('.window')); }, 2250);
+        }
+      
     }
+
   });
 }
 
@@ -71,18 +77,19 @@ SnapGame.evaluateTurn = function(divElement) {
 }
 
 SnapGame.turnComplete = function(divElement) {
+  if ((SnapGame.imageOne == SnapGame.imageTwo) && (SnapGame.imageOne != ""))  {
+    $("." + divElement.children().attr('class')).parent().parent().css("opacity", 0);
+  }
   if (SnapGame.turnNumber % 2 === 0) {
     $('.window').slideUp();
     $('.front').slideDown();
     SnapGame.allowTurn = true;
   }
-  if ((SnapGame.imageOne == SnapGame.imageTwo) && (SnapGame.imageOne != ""))  {
-    $("." + divElement.children().attr('class')).parent().parent().css("opacity", 0);
-  }
   if (SnapGame.turnNumber % 2 === 0) {
     SnapGame.imageTwo = "";
     SnapGame.imageOne = "";
   }
+  SnapGame.gameOverModal();
 }
 
 SnapGame.turnCheck = function() {
@@ -129,6 +136,24 @@ SnapGame.loginModal = function() {
     el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
     $('#login_link').toggle();
   }
+}
+SnapGame.gameOverModal = function() {
+  el = $('#gameover-modal');
+  var count = SnapGame.countClear();
+  if (el != null && count == 16) {
+    el[0].style.visibility = (el[0].style.visibility == "visible") ? "hidden" : "visible";
+  }
+}
+
+SnapGame.countClear = function() {
+  var $allEls = $('.flipper');
+  var count = 0;
+  $allEls.each(function(index) {
+    if ($(this).css("opacity") == "0") {
+      count += 1;
+    }
+  });
+  return count
 }
 
 SnapGame.clickModalClickHandler = function() {

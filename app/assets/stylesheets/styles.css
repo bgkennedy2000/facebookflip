@@ -22,25 +22,25 @@ header {
   display: inline-block;
   display: none;
   vertical-align: middle;
-  height: 175px;
-  width: 175px;
+  height: 145px;
+  width: 145px;
 }
 .front {
-  height: 175px;
-  width: 175px;
+  height: 145px;
+  width: 145px;
 }
 .flipper {
   display: inline-block;
   margin: 5px;
-  height: 175px;
-  width: 175px;
+  height: 145px;
+  width: 145px;
   overflow: hidden;
   border-radius: 10px;
 }
 #row1, #row2, #row3, #row4 {
   text-align: center;
 }
-#login-modal {
+#login-modal, #gameover-modal {
      visibility: hidden;
      position: absolute;
      left: 0px;
@@ -50,7 +50,7 @@ header {
      text-align:center;
      z-index: 1000;
 }
-#login-content {
+#login-content, #gameover-content {
      width:300px;
      margin: 100px auto;
      background-color: #fff;

@@ -13,5 +13,6 @@
           %img.front_image{src: "#{current_user.image_url}"}
         - else
           = image_tag "digg.png", class: "front_image"
+= render 'game_over'
 = javascript_include_tag "snapgame"
 
